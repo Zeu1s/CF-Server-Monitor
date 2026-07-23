@@ -91,8 +91,8 @@
         <div class="sysinfo-item" v-if="server.net_rx_monthly">
           <span class="sysinfo-label">📦 {{ trans.monthlyTrafficLimit }}</span>
           <span class="sysinfo-value sysinfo-small">
-            {{ server.traffic_calc_type === 'dl' ? formatBytes(server.net_rx_monthly) : (server.traffic_calc_type === 'ul' ? formatBytes(server.net_tx_monthly) : formatBytes(server.net_rx_monthly + server.net_tx_monthly)) }} 
-            / 
+            {{ formatBytes(trafficUsageBytes) }}
+            /
             {{ server.traffic_limit ? formatBytes(server.traffic_limit * 1024 * 1024 * 1024) : 'Unlimited' }}
           </span>
         </div>
@@ -292,6 +292,7 @@ import TerminalHeader from '../components/TerminalHeader.vue'
 import Footer from '../components/Footer.vue'
 import OsIcon from '../components/OsIcon.vue'
 import { fetchServerDetail, fetchAllHistory, formatBytes, isAdminLoggedIn, createLiveSocket, getFlagRegionCode, isServerOnline } from '../utils/api.js'
+import { getTrafficUsageBytes } from '../composables/useServerCardData'
 import { hasMultipleApiBases, getPublicAssetUrl } from '../utils/config.js'
 import Chart from 'chart.js/auto'
 import 'chartjs-adapter-date-fns'
@@ -432,6 +433,8 @@ const visiblePingStats = computed(() => visiblePingFields.value.map(item => ({
   label: trans.value[item.labelKey],
   value: avgPingRefs[item.field].value
 })))
+
+const trafficUsageBytes = computed(() => getTrafficUsageBytes(server.value))
 
 const safeDestroyCharts = () => {
   try {
