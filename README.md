@@ -4,7 +4,7 @@
 
 **演示地址**：<https://demo.huilang.me/>
 
-**当前Workers版本：V2.7.13 Beta4; Agent版本：1.3.2**
+**当前Workers版本：V2.7.13 Beta5; Agent版本：1.3.2**
 
 > [!IMPORTANT]
 > V2.7.10 加入了 CSP 内容安全策略。默认只允许同源资源和必要的 Cloudflare/Google Fonts 资源；
@@ -96,7 +96,7 @@
 3. 点击 **Create application**
 4. 选择 Continue with GitHub（第一次使用需要连接 GitHub 账户），选择本项目
 5. Project Name填写：`cf-server-monitor`
-6. Build command 保留默认值：`npm run build`
+6. Build command 保留默认值空白
 7. Deploy command 保留默认值：`npx wrangler deploy`
 8. 点击 **Deploy**，成功会在底部显示`✨ Success! Build completed.`
 
